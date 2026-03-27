@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+@import "tailwindcss";
+
+:root {
+  /* Sidebar */
+  --sidebar-bg: #0f1a2a;
+  --sidebar-border: #1c2a3a;
+
+  /* Layout */
+  --content-bg: #f1f3f7;
+  --card-bg: #ffffff;
+  --border: #e4e7ec;
+
+  /* Text */
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-muted: #9aa3af;
+
+  /* Primary */
+  --primary: #4f7cff;
+  --primary-hover: #3f6df0;
+  --primary-soft: #eaf0ff;
+
+  /* Status Colors */
+  --green: #7fb3a8;
+  --green-bg: #edf6f4;
+
+  --red: #e6a19a;
+  --red-bg: #fbefee;
+
+  --purple: #a78bfa;
+  --purple-bg: #f3f0ff;
+
+  --blue: #93c5fd;
+  --blue-bg: #eff6ff;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-md: 0 4px 20px rgba(16, 24, 40, 0.06);
+}
+
+/* ✅ Keep ONLY this — do NOT reset margin/padding */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--content-bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+/* Skeleton */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #e4e7ec 25%,
+    #f1f3f7 50%,
+    #e4e7ec 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Slide-over */
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.slide-in {
+  animation: slide-in 0.25s ease-out forwards;
+}
+
+/* Fade */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fade-in 0.2s ease-out forwards;
+}
+
+/* Theme mapping */
+@theme inline {
+  --color-background: var(--content-bg);
+  --color-foreground: var(--text-primary);
+  --font-sans: "Inter", sans-serif;
+}
