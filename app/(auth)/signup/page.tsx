@@ -1,11 +1,18 @@
+"use client"
+
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/public/logo.png"
 
+import { useSignup } from "@/hooks/useSignup";
+
 
 const SignupPage = () => {
+  const handleSignup = useSignup();
+
+
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-[var(--content-bg)]">
+    <div className="min-h-screen flex items-center justify-center p-6 bg-(--content-bg)">
       <div className="w-full max-w-md">
         {/* Logo */}
         {/* Logo */}
@@ -27,7 +34,7 @@ const SignupPage = () => {
           </div>
 
           {/* Form */}
-          <form className="flex flex-col gap-4">
+          <form className="flex flex-col gap-4" onSubmit={handleSignup}>
             {/* Business Name */}
             <div className="flex flex-col gap-1.5">
               <label className="text-xs font-semibold uppercase tracking-wide text-(--text-muted)">
@@ -65,7 +72,6 @@ const SignupPage = () => {
             </div>
 
             {/* Button */}
-            {/* Button */}
             <button
               type="submit"
               className="w-full bg-black text-white py-2.5 rounded-lg text-sm font-medium hover:opacity-90 transition">
@@ -77,7 +83,7 @@ const SignupPage = () => {
           <p className="text-center text-sm mt-6 text-(--text-secondary)">
             Already have an account?{" "}
             <Link
-              href="/auth/login"
+              href="/login"
               className="font-semibold text-(--primary) hover:underline">
               Sign in
             </Link>

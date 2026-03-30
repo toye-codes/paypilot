@@ -15,27 +15,67 @@ const colorMap = {
   yellow: { accent: "var(--yellow)", bg: "var(--yellow-bg)" },
 };
 
-export default function StatCard({ label, value, trend, trendPercent, color }: StatCardProps) {
+export default function StatCard({
+  label,
+  value,
+  trend,
+  trendPercent,
+  color,
+}: StatCardProps) {
   const { accent, bg } = colorMap[color];
-  const TrendIcon = trend === "up" ? TrendingUp : trend === "down" ? TrendingDown : Minus;
-  const trendColor = trend === "up" ? "var(--green)" : trend === "down" ? "var(--red)" : "var(--text-muted)";
+
+  const TrendIcon =
+    trend === "up" ? TrendingUp : trend === "down" ? TrendingDown : Minus;
+
+  const trendColor =
+    trend === "up"
+      ? "var(--green)"
+      : trend === "down"
+        ? "var(--red)"
+        : "var(--text-muted)";
 
   return (
-    <div className="rounded-2xl p-5 flex flex-col gap-3"
-      style={{ background: "var(--card-bg)", border: "1px solid var(--border)", boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
+    <div className="rounded-2xl p-4 sm:p-5 flex flex-col gap-2 sm:gap-3 bg-white shadow-sm w-full">
+      {/* Top Row */}
       <div className="flex items-center justify-between">
-        <p className="text-sm font-medium" style={{ color: "var(--text-secondary)" }}>{label}</p>
-        <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: bg }}>
-          <div className="w-2.5 h-2.5 rounded-full" style={{ background: accent }} />
+        <p
+          className="text-xs sm:text-sm font-medium"
+          style={{ color: "var(--text-secondary)" }}>
+          {label}
+        </p>
+
+        <div
+          className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl flex items-center justify-center"
+          style={{ background: bg }}>
+          <div
+            className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full"
+            style={{ background: accent }}
+          />
         </div>
       </div>
-      <p className="text-2xl font-bold tracking-tight" style={{ color: "var(--text-primary)" }}>{value}</p>
-      <div className="flex items-center gap-1.5">
-        <TrendIcon size={13} style={{ color: trendColor }} />
-        <span className="text-xs font-medium" style={{ color: trendColor }}>
+
+      {/* Value */}
+      <p
+        className="text-lg sm:text-2xl font-bold tracking-tight"
+        style={{ color: "var(--text-primary)" }}>
+        {value}
+      </p>
+
+      {/* Trend */}
+      <div className="flex items-center gap-1 flex-wrap">
+        <TrendIcon size={12} style={{ color: trendColor }} />
+
+        <span
+          className="text-[10px] sm:text-xs font-medium"
+          style={{ color: trendColor }}>
           {trendPercent}%
         </span>
-        <span className="text-xs" style={{ color: "var(--text-muted)" }}>vs last month</span>
+
+        <span
+          className="text-[10px] sm:text-xs"
+          style={{ color: "var(--text-muted)" }}>
+          vs last month
+        </span>
       </div>
     </div>
   );

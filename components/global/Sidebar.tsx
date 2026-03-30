@@ -7,9 +7,11 @@ import {
   ArrowLeftRight,
   Package,
   Settings,
-  TrendingUp,
   LogOut,
 } from "lucide-react";
+
+import logo from "@/public/logo.png"
+import Image from "next/image";
 
 const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -18,7 +20,7 @@ const navItems = [
   { label: "Settings", href: "/settings", icon: Settings },
 ];
 
-export default function Sidebar() {
+const Sidebar = () => {
   const pathname = usePathname();
 
   return (
@@ -26,9 +28,8 @@ export default function Sidebar() {
       style={{ background: "var(--sidebar-bg)", borderRight: "1px solid var(--sidebar-border)" }}>
       {/* Logo */}
       <div className="px-6 py-6 flex items-center gap-2">
-        <div className="w-8 h-8 rounded-lg flex items-center justify-center"
-          style={{ background: "linear-gradient(135deg, #3b82f6, #8b5cf6)" }}>
-          <TrendingUp size={16} className="text-white" />
+        <div className="w-8 h-8 rounded-lg flex items-center justify-center">
+          <Image src={logo} alt="PayPilot" />
         </div>
         <span className="text-white font-bold text-lg tracking-tight">PayPilot</span>
       </div>
@@ -74,3 +75,5 @@ export default function Sidebar() {
     </aside>
   );
 }
+
+export default Sidebar;

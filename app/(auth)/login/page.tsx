@@ -1,9 +1,16 @@
+"use client"
+
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../../public/logo.png";
 import InputField from "@/components/auth/InputField";
 
+import { useLogin } from "@/hooks/useLogin";
+
 const LoginPage = () => {
+
+  const  handleSubmit = useLogin();
+
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-gray-50">
       <div className="w-full max-w-md space-y-6">
@@ -24,7 +31,7 @@ const LoginPage = () => {
           </div>
 
           {/* Form */}
-          <form className="space-y-5">
+          <form className="space-y-5" onSubmit={handleSubmit}>
             <InputField
               label="Email"
               type="email"
@@ -52,6 +59,7 @@ const LoginPage = () => {
             {/* Button */}
             <button
               type="submit"
+              // onClick={handleLogin}
               className="w-full bg-black text-white py-2.5 rounded-lg text-sm font-medium hover:opacity-90 transition">
               Sign In
             </button>
@@ -61,7 +69,7 @@ const LoginPage = () => {
           <p className="text-sm text-center text-gray-500 mt-10">
             Don&apos;t have an account?{" "}
             <Link
-              href="/auth/signup"
+              href="/signup"
               className="text-blue-600 hover:underline font-medium">
               Sign up
             </Link>
