@@ -8,7 +8,7 @@ import { useSignup } from "@/hooks/useSignup";
 
 
 const SignupPage = () => {
-  const handleSignup = useSignup();
+  const {signupData, handleSignup, handleChange, error } = useSignup();
 
 
   return (
@@ -42,7 +42,25 @@ const SignupPage = () => {
               </label>
               <input
                 type="text"
+                name="businessName"
+                value={signupData.businessName}
+                onChange={handleChange}
                 placeholder="e.g. Acme Electronics"
+                className="w-full px-4 py-3 rounded-xl text-sm border border-(--border) outline-none focus:ring-2 focus:ring-(--primary) bg-(--primary-soft)"
+              />
+            </div>
+
+            {/* Owner Name */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-semibold uppercase tracking-wide text-(--text-muted)">
+                Owner Name
+              </label>
+              <input
+                type="text"
+                name="ownerName"
+                value={signupData.ownerName}
+                onChange={handleChange}
+                placeholder="e.g. Olusanya"
                 className="w-full px-4 py-3 rounded-xl text-sm border border-(--border) outline-none focus:ring-2 focus:ring-(--primary) bg-(--primary-soft)"
               />
             </div>
@@ -54,6 +72,9 @@ const SignupPage = () => {
               </label>
               <input
                 type="email"
+                name="email"
+                value={signupData.email}
+                onChange={handleChange}
                 placeholder="admin@acme.ng"
                 className="w-full px-4 py-3 rounded-xl text-sm border border-(--border) outline-none focus:ring-2 focus:ring-[var(--primary)] bg-[var(--primary-soft)]"
               />
@@ -66,10 +87,13 @@ const SignupPage = () => {
               </label>
               <input
                 type="password"
+                name="password"
+                value={signupData.password}
+                onChange={handleChange}
                 placeholder="Create a strong password"
                 className="w-full px-4 py-3 rounded-xl text-sm border border-(--border) outline-none focus:ring-2 focus:ring-[var(--primary)] bg-[var(--primary-soft)]"
               />
-            </div>
+            </div> 
 
             {/* Button */}
             <button

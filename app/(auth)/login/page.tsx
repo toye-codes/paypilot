@@ -9,7 +9,7 @@ import { useLogin } from "@/hooks/useLogin";
 
 const LoginPage = () => {
 
-  const  handleSubmit = useLogin();
+  const  {handleSubmit, handleChange, loginData, error} = useLogin();
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-gray-50">
@@ -30,12 +30,21 @@ const LoginPage = () => {
             </p>
           </div>
 
+          {error && (
+            <div className="text-red-300 font-medium ">
+              {error}
+            </div>
+          )}
+
           {/* Form */}
           <form className="space-y-5" onSubmit={handleSubmit}>
             <InputField
               label="Email"
+              name="email"
+              value={loginData.email}
               type="email"
               placeholder="admin@acme.ng"
+              onChange={handleChange}
             />
 
             {/* Password */}
@@ -51,7 +60,10 @@ const LoginPage = () => {
 
               <input
                 type="password"
+                name="password"
+                value={loginData.password}
                 placeholder="••••••••"
+                onChange={handleChange}
                 className="w-full border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>

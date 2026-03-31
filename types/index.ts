@@ -1,3 +1,14 @@
+// Auth Data
+
+export type AuthData = {
+    email: string;
+    password: string;
+    businessName?: string;
+    ownerName?: string;
+}
+
+
+
 // ─── Transaction ─────────────────────────────────────────────────────────────
 
 export type TransactionType = "credit" | "debit";

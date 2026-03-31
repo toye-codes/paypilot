@@ -24,8 +24,8 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed top-0 left-0 h-screen w-60 flex flex-col z-30"
-      style={{ background: "var(--sidebar-bg)", borderRight: "1px solid var(--sidebar-border)" }}>
+    <aside className="fixed top-0 left-0 h-screen w-52 flex flex-col z-30"
+      style={{ background: "var(--sidebar-bg)" }}>
       {/* Logo */}
       <div className="px-6 py-6 flex items-center gap-2">
         <div className="w-8 h-8 rounded-lg flex items-center justify-center">
