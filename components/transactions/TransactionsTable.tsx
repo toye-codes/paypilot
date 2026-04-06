@@ -56,7 +56,7 @@ export default function TransactionsTable({
               "Date",
               "Status",
               "Amount",
-              "Actions",
+              // "Actions",
             ].map((h) => (
               <th
                 key={h}
@@ -116,7 +116,7 @@ export default function TransactionsTable({
               </td>
 
               {/* Actions */}
-              <td className="px-4 py-3">
+              {/* <td className="px-4 py-3">
                 <div className="flex items-center justify-end gap-2">
                   <button className="p-2 rounded-lg hover:bg-gray-100 transition">
                     <Pencil size={16} className="text-gray-500" />
@@ -125,7 +125,7 @@ export default function TransactionsTable({
                     <Trash2 size={16} className="text-red-500" />
                   </button>
                 </div>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>
