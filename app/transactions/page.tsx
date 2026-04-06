@@ -1,13 +1,17 @@
 "use client";
 
 import { useState } from "react";
+
+import { Button } from "@/components/global/Button";
 import AppLayout from "@/components/global/AppLayout";
-import TransactionsTable from "@/components/dashboard/TransactionsTable";
+import TransactionsTable from "@/components/transactions/TransactionsTable";
 import EmptyState from "@/components/global/EmptyState";
 import { SkeletonRow } from "@/components/global/Skeletons";
 import SlideOver from "@/components/global/SlideOver";
-import { TransactionForm } from "@/components/global/Forms";
+import TransactionForm from "@/components/transactions/TransactionForm";
+
 import { useTransactions } from "@/hooks/useTransactions";
+
 import { Search, Filter, Plus, ArrowLeftRight } from "lucide-react";
 
 export default function TransactionsPage() {
@@ -16,7 +20,7 @@ export default function TransactionsPage() {
 
   return (
     <AppLayout>
-      <div className="p-6 max-w-5xl mx-auto">
+      <div className="p-2 max-w-5xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-7">
           <div>
@@ -25,13 +29,11 @@ export default function TransactionsPage() {
               View and manage all your inbound and outbound payments
             </p>
           </div>
-          <button
-            onClick={() => setOpen(true)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-white transition-opacity hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #3b82f6, #8b5cf6)" }}>
+          <Button
+            onClick={() => setOpen(true)}>
             <Plus size={16} />
             Add Transaction
-          </button>
+          </Button>
         </div>
 
         {/* Toolbar */}

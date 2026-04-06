@@ -34,6 +34,16 @@ export interface Transaction {
   anomaly?: boolean;
 }
 
+export type FormState = {
+  amount: number | "";
+  type: TransactionType | "";
+  category: TransactionCategory | "";
+  channel: TransactionChannel | "";
+  status: TransactionStatus | "";
+  description: string;
+  date: string;
+};
+
 // ─── Alert ────────────────────────────────────────────────────────────────────
 
 export type AlertType =

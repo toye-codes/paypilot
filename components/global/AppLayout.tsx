@@ -30,7 +30,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Main Layout */}
-      <div className="grid h-full grid-cols-1 lg:grid-cols-[200px_1fr_297px] pb-16">
+      <div className="grid h-full grid-cols-1 lg:grid-cols-[200px_1fr] pb-16">
         {/* Sidebar (Desktop) */}
         <aside className="hidden lg:block h-full overflow-y-auto">
           <Sidebar />
@@ -52,10 +52,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         {/* Main Content */}
         <main className="h-full overflow-y-auto p- md:p-4">{children}</main>
 
-        {/* Right Panel */}
+        {/* Right Panel
         <aside className=" h-full overflow-y-auto p-2 hidden lg:block">
           <RightPanel />
-        </aside>
+        </aside> */}
       </div>
     </section>
   );

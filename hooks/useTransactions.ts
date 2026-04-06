@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { transactions } from "@/data/transactions";
+
+import { useTransactionStore } from "@/stores/useTransactionStore";
 import type { Transaction } from "@/types";
 
 interface TransactionsData {
@@ -13,11 +14,13 @@ export function useTransactions() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<TransactionsData | null>(null);
 
+  const transactions = useTransactionStore((state)=> state.transactions)
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (transactions.length > 0) {
         const sorted = [...transactions].sort(
-          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
         );
         setData({
           all: sorted,
@@ -28,7 +31,7 @@ export function useTransactions() {
     }, 800);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [transactions]);
 
   return {
     data,

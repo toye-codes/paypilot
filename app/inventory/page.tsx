@@ -1,22 +1,27 @@
 "use client";
 
 import { useState } from "react";
+
+import { Button } from "@/components/global/Button";
 import AppLayout from "@/components/global/AppLayout";
 import EmptyState from "@/components/global/EmptyState";
 import { SkeletonInventoryCard } from "@/components/global/Skeletons";
 import SlideOver from "@/components/global/SlideOver";
-import { InventoryForm } from "@/components/global/Forms";
+
+import  InventoryForm  from "@/components/inventory/InventoryForm";
 import InventoryGrid from "@/components/inventory/InventoryGrid";
+
 import { useInventory } from "@/hooks/useInventory";
 import { Search, Filter, Plus, Package } from "lucide-react";
 
 export default function InventoryPage() {
   const { data, loading } = useInventory();
   const [open, setOpen] = useState(false);
+  
 
   return (
     <AppLayout>
-      <div className="p-6 max-w-[1400px] mx-auto">
+      <div className="p-6 max-w-350 mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-7">
           <div>
@@ -25,13 +30,11 @@ export default function InventoryPage() {
               Manage your products, pricing, and stock levels
             </p>
           </div>
-          <button
-            onClick={() => setOpen(true)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-white transition-opacity hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, #10b981, #3b82f6)" }}>
+          <Button
+            onClick={() => setOpen(true)}>
             <Plus size={16} />
             Add Product
-          </button>
+          </Button>
         </div>
 
         {/* Stats Summary Panel */}

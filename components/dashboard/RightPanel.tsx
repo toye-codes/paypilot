@@ -7,9 +7,8 @@ import EmptyState from "../global/EmptyState";
 import AlertsPanel from "./AlertsPanel";
 import AISummaryCard from "./AISummaryCard";
 import QuickActions from "./QuickActions";
-import { TransactionForm } from "../global/Forms";
-import { InventoryForm } from "../global/Forms";
-
+import TransactionForm from "../transactions/TransactionForm";
+import InventoryForm from "../inventory/InventoryForm";
 
 function AISummaryCardWrapper() {
   const { data, loading } = useStats();
@@ -24,7 +23,7 @@ const RightPanel = () => {
   const { data: alertData, loading: alertLoading } = useAlerts();
 
   return (
-    <div className="p-5 flex flex-col gap-6">
+    <div className="p-2 flex  flex-col-reverse gap-6">
       {/* 1. Alerts */}
       {alertLoading ? (
         <div className="flex flex-col gap-2">
@@ -58,13 +57,12 @@ const RightPanel = () => {
       ) : null}
       <AISummaryCardWrapper />
 
-      <div style={{ borderTop: "1px solid var(--border)" }} />
+      {/* <div style={{ borderTop: "1px solid var(--border)" }} /> */}
 
       {/* 3. Quick Actions */}
       <QuickActions
         onAddTransaction={() => setTxOpen(true)}
         onAddProduct={() => setInvOpen(true)}
-        onLogExpense={() => setTxOpen(true)}
       />
 
       {/* Slide-Overs */}
