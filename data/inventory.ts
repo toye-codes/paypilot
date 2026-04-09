@@ -2,7 +2,7 @@ import type { InventoryItem } from "@/types";
 
 export const inventory: InventoryItem[] = [
   {
-    id: "inv-001",
+    productId: "inv-001",
     name: "Wireless Headphones",
     category: "electronics",
     costPrice: 45000,
@@ -12,7 +12,7 @@ export const inventory: InventoryItem[] = [
     lastActivity: "2026-03-25T10:30:00Z",
   },
   {
-    id: "inv-002",
+    productId: "inv-002",
     name: "Smart Watch",
     category: "electronics",
     costPrice: 70000,
@@ -22,7 +22,7 @@ export const inventory: InventoryItem[] = [
     lastActivity: "2026-03-24T11:15:00Z",
   },
   {
-    id: "inv-003",
+    productId: "inv-003",
     name: "Bluetooth Speaker",
     category: "electronics",
     costPrice: 22000,
@@ -32,7 +32,7 @@ export const inventory: InventoryItem[] = [
     lastActivity: "2026-03-22T16:45:00Z",
   },
   {
-    id: "inv-004",
+    productId: "inv-004",
     name: "Phone Charger (Bulk)",
     category: "electronics",
     costPrice: 8000,
@@ -42,7 +42,7 @@ export const inventory: InventoryItem[] = [
     lastActivity: "2026-03-19T14:00:00Z",
   },
   {
-    id: "inv-005",
+    productId: "inv-005",
     name: "Laptop Bag",
     category: "other",
     costPrice: 12000,
@@ -52,7 +52,7 @@ export const inventory: InventoryItem[] = [
     lastActivity: "2026-02-14T09:00:00Z",
   },
   {
-    id: "inv-006",
+    productId: "inv-006",
     name: "USB Hub (7-port)",
     category: "electronics",
     costPrice: 9500,
@@ -62,7 +62,7 @@ export const inventory: InventoryItem[] = [
     lastActivity: "2026-03-10T12:30:00Z",
   },
   {
-    id: "inv-007",
+    productId: "inv-007",
     name: "Office Chair",
     category: "furniture",
     costPrice: 55000,
@@ -72,7 +72,7 @@ export const inventory: InventoryItem[] = [
     lastActivity: "2026-03-01T10:00:00Z",
   },
   {
-    id: "inv-008",
+    productId: "inv-008",
     name: "Mechanical Keyboard",
     category: "electronics",
     costPrice: 28000,

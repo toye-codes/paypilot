@@ -50,7 +50,7 @@ export const useInventoryForm = () => {
       return;
       
       const newInventory: InventoryItem = {
-        id: crypto.randomUUID(),
+        productId: crypto.randomUUID(),
         name: formData.name,
         category: formData.category,
         costPrice: Number(formData.costPrice),
