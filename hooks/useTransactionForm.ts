@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTransactionStore } from "@/stores/useTransactionStore";
 import { Transaction, FormState } from "@/types";
+import { processTransaction } from "@/utility/processTransaction";
 
 export const useTransactionForm = () => {
   const addTransaction = useTransactionStore((state) => state.addTransaction);
@@ -8,6 +9,8 @@ export const useTransactionForm = () => {
   const [formData, setFormData] = useState<FormState>({
     description: "",
     category: "",
+    quantity: 0,
+    productId: "",
     date: "",
     amount: "",
     type: "",
@@ -32,12 +35,13 @@ export const useTransactionForm = () => {
     e.preventDefault();
 
     if (
-      // !formData.amount ||
+      !formData.amount ||
       !formData.type ||
       !formData.category ||
       !formData.channel ||
       !formData.status ||
-      !formData.description
+      !formData.description ||
+      !formData.quantity
     ) {
       return;
     }
@@ -46,6 +50,8 @@ export const useTransactionForm = () => {
       id: crypto.randomUUID(),
       description: formData.description,
       category: formData.category,
+      productId: formData.productId,
+      quantity: formData.quantity,
       date: formData.date || new Date().toISOString(),
       amount: Number(formData.amount),
       type: formData.type,
@@ -56,12 +62,15 @@ export const useTransactionForm = () => {
     console.log(formData, "Button clicked");
     
 
-    addTransaction(newTransaction);
+    // addTransaction(newTransaction);
+    processTransaction(newTransaction);
 
     // Reset form
     setFormData({
       description: "",
       category: "",
+      productId: "",
+      quantity: 0,
       date: "",
       amount: "",
       type: "",

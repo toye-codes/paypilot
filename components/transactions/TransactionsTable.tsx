@@ -85,7 +85,7 @@ export default function TransactionsTable({
                     />
                   )}
 
-                  <span className="font-medium text-gray-900 truncate max-w-[220px]">
+                  <span className="font-medium text-gray-900 truncate max-w-55">
                     {tx.description}
                   </span>
                 </div>

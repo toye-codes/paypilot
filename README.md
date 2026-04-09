@@ -1,36 +1,150 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PayPilot
 
-## Getting Started
+A scalable financial management system built to help businesses track transactions, manage inventory, and gain insights into their cash flow — all from a clean, structured interface.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🔗 Live Demo
+
+(https://paypilot-three.vercel.app/)
+
+## 📸 Preview
+
+
+
+---
+
+## 💡 Why I Built This
+
+Most small business tools are either too complex or too limited.
+
+I built PayPilot to explore how a **frontend-heavy architecture** can handle complex financial workflows while staying modular, scalable, and easy to maintain.
+
+This project focuses on **state design, structure, and clarity**, not just UI.
+
+---
+
+## 📖 Overview
+
+PayPilot centralizes core business operations:
+
+* Financial tracking (inflow & outflow)
+* Inventory management
+* Role-based system control
+* Automated insights using AI summaries
+
+The goal is to simulate how real-world fintech dashboards are structured on the frontend.
+
+---
+
+## ✨ Core Features
+
+### 📊 Transaction Management
+
+* Tracks sales, expenses, salaries, and operational costs
+* Categorized financial records for better visibility
+
+### 📦 Inventory System
+
+* Monitor stock levels
+* Track product availability and updates
+
+### 🔐 Role-Based Access Control
+
+* Admin / Super Admin system
+* Controlled access to sensitive operations
+
+### 🚨 Smart Alerts
+
+* Detects duplicate or suspicious transactions
+* Prevents data inconsistencies
+
+### 🤖 AI Insights
+
+* Summarizes financial activity
+* Shows trends in cash flow and estimated profit
+
+---
+
+## 🧠 Key Engineering Decisions
+
+* **Zustand over Context API**
+  → Chosen for better scalability and cleaner state separation
+
+* **Modular Folder Structure**
+  → Feature-based grouping for maintainability and growth
+
+* **Next.js App Router**
+  → Enables better routing, layout control, and scalability
+
+---
+
+## 🛠 Tech Stack
+
+* Next.js 16
+* TypeScript
+* Tailwind CSS
+* Zustand
+
+---
+
+## 📁 Project Structure
+
+```
+app/
+  auth/
+  dashboard/
+  inventory/
+  settings/
+  transactions/
+
+components/
+  auth/
+  dashboard/
+  global/
+  inventory/
+  transaction/
+
+data/
+hooks/
+lib/
+stores/
+utility/
+types/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git clone https://github.com/toye-codes/paypilot.git
+cd paypilot
+npm install
+npm run dev
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📈 Future Improvements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Payment integration (Stripe / Paystack)
+* Advanced analytics dashboard (charts & reports)
+* Real-time updates (WebSockets or Firebase)
+* Multi-tenant business support
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🧠 What I Learned
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Designing scalable frontend architectures
+* Managing complex global state with Zustand
+* Structuring large applications for maintainability
+* Thinking beyond UI — focusing on system design
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 👤 Author
+
+* GitHub: @toye-codes
+* LinkedIn: (https://www.linkedin.com/in/olusanya-agbesanya/)

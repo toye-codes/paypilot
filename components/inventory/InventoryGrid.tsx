@@ -18,7 +18,7 @@ export default function InventoryGrid({ items }: InventoryGridProps) {
         const isLowStock = !isOutOfStock && item.stockQuantity <= item.lowStockThreshold;
 
         return (
-          <div key={item.id} className="rounded-2xl p-5 flex flex-col transition-colors hover:bg-gray-50"
+          <div key={item.productId} className="rounded-2xl p-5 flex flex-col transition-colors hover:bg-gray-50"
             style={{ background: "var(--card-bg)", border: "1px solid var(--border)", boxShadow: "0 1px 3px rgba(0,0,0,0.02)" }}>
             {/* Header */}
             <div className="flex items-start justify-between gap-3 mb-3">

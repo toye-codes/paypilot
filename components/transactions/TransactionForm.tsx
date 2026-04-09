@@ -1,5 +1,6 @@
 import { Button } from "../global/Button";
 import { useTransactionForm } from "@/hooks/useTransactionForm";
+import { useInventoryStore } from "@/stores/useInventoryStore";
 
 const baseInputClass =
   "w-full px-3.5 py-2.5 rounded-xl text-sm border outline-none transition focus:ring-2 focus:ring-primary/40 bg-content border-border text-text-primary placeholder:text-text-muted";
@@ -22,6 +23,8 @@ function Field({ label, children }: FieldProps) {
 
 const TransactionForm = () => {
   const { handleChange, handleSubmit, formData } = useTransactionForm();
+  const inventory = useInventoryStore((state) => state.inventory);
+  console.log(inventory);
 
 
   return (
@@ -45,7 +48,11 @@ const TransactionForm = () => {
 
       {/* Type */}
       <Field label="Type">
-        <select name="type" value={formData.type} onChange={handleChange} className={baseInputClass}>
+        <select
+          name="type"
+          value={formData.type}
+          onChange={handleChange}
+          className={baseInputClass}>
           <option value="">Select type</option>
           <option value="credit">Credit</option>
           <option value="debit">Debit</option>
@@ -54,7 +61,11 @@ const TransactionForm = () => {
 
       {/* Category */}
       <Field label="Category">
-        <select name="category" value={formData.category} onChange={handleChange} className={baseInputClass}>
+        <select
+          name="category"
+          value={formData.category}
+          onChange={handleChange}
+          className={baseInputClass}>
           <option value="">Select category</option>
           {[
             "Sales",
@@ -67,13 +78,48 @@ const TransactionForm = () => {
             <option key={c} value={c.toLowerCase()}>
               {c}
             </option>
-          ))} 
+          ))}
         </select>
       </Field>
 
+      {(formData.category === "sales" || formData.category === "inventory") && (
+        <Field label="Product">
+          <select
+            name="productId"
+            value={formData.productId || ""}
+            onChange={handleChange}
+            className={baseInputClass}>
+            <option value="">Select product</option>
+            {inventory.map((item) => (
+              <option key={item.productId} value={item.productId}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </Field>
+      )}
+
+      {/* Quantity of product */}
+      {(formData.category === "sales" || formData.category === "inventory") && (
+        <Field label="Quantity">
+          <input
+            type="number"
+            name="quantity"
+            value={formData.quantity || ""}
+            onChange={handleChange}
+            placeholder="Enter quantity"
+            className={baseInputClass}
+          />
+        </Field>
+      )}
+
       {/* Channel */}
       <Field label="Channel">
-        <select name="channel" value={formData.channel} onChange={handleChange} className={baseInputClass}>
+        <select
+          name="channel"
+          value={formData.channel}
+          onChange={handleChange}
+          className={baseInputClass}>
           <option value="">Select channel</option>
           <option value="transfer">Transfer</option>
           <option value="pos">POS</option>
@@ -95,12 +141,22 @@ const TransactionForm = () => {
 
       {/* Date */}
       <Field label="Date">
-        <input type="date" name="date" value={formData.date} onChange={handleChange} className={baseInputClass} />
+        <input
+          type="date"
+          name="date"
+          value={formData.date}
+          onChange={handleChange}
+          className={baseInputClass}
+        />
       </Field>
 
       {/* Status */}
       <Field label="Status">
-        <select name="status" value={formData.status} onChange={handleChange} className={baseInputClass}>
+        <select
+          name="status"
+          value={formData.status}
+          onChange={handleChange}
+          className={baseInputClass}>
           <option value="">Select status</option>
           <option value="success">Success</option>
           <option value="pending">Pending</option>

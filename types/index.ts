@@ -26,18 +26,22 @@ export interface Transaction {
   id: string;
   description: string;
   category: TransactionCategory;
-  date: string; // ISO string
+  date: string;
   amount: number;
   type: TransactionType;
   channel: TransactionChannel;
   status: TransactionStatus;
   anomaly?: boolean;
+  productId?: string;
+  quantity?: number;
 }
 
 export type FormState = {
   amount: number | "";
   type: TransactionType | "";
   category: TransactionCategory | "";
+  productId: "";
+  quantity: number;
   channel: TransactionChannel | "";
   status: TransactionStatus | "";
   description: string;
@@ -93,7 +97,7 @@ export type InventoryCategory =
   | "other";
 
 export interface InventoryItem {
-  id: string;
+  productId: string;
   name: string;
   category: InventoryCategory;
   costPrice: number;
