@@ -1,5 +1,5 @@
 import { Button } from "../global/Button";
-import { useInventoryForm } from "@/hooks/useInventoryForm";
+import { useInventoryForm } from "@/hooks/inventory/useInventoryForm";
 
 const baseInputClass =
   "w-full px-3.5 py-2.5 rounded-xl text-sm border outline-none transition focus:ring-2 focus:ring-primary/40 bg-content border-border text-text-primary placeholder:text-text-muted";

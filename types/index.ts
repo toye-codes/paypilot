@@ -8,6 +8,13 @@ export type AuthData = {
 }
 
 
+export type TransactionFilters = {
+  status?: Transaction["status"];
+  type?: Transaction["type"];
+  channel?: Transaction["channel"];
+  category?: string;
+};
+
 
 // ─── Transaction ─────────────────────────────────────────────────────────────
 

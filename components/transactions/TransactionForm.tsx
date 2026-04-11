@@ -1,5 +1,5 @@
 import { Button } from "../global/Button";
-import { useTransactionForm } from "@/hooks/useTransactionForm";
+import { useTransactionForm } from "@/hooks/transactions/useTransactionForm";
 import { useInventoryStore } from "@/stores/useInventoryStore";
 
 const baseInputClass =

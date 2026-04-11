@@ -11,7 +11,7 @@ import SlideOver from "@/components/global/SlideOver";
 import  InventoryForm  from "@/components/inventory/InventoryForm";
 import InventoryGrid from "@/components/inventory/InventoryGrid";
 
-import { useInventory } from "@/hooks/useInventory";
+import { useInventory } from "@/hooks/inventory/useInventory";
 import { Search, Filter, Plus, Package } from "lucide-react";
 
 export default function InventoryPage() {

@@ -5,7 +5,7 @@ import SectionHeader from "@/components/global/SectionHeader";
 import EmptyState from "@/components/global/EmptyState";
 import { SkeletonRow } from "@/components/global/Skeletons";
 import TransactionsTable from "@/components/transactions/TransactionsTable";
-import { useTransactions } from "@/hooks/useTransactions";
+import { useTransactions } from "../../hooks/transactions/useTransactions";
 import { ArrowLeftRight } from "lucide-react";
 
 import RightPanel from "@/components/dashboard/RightPanel";
