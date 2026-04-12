@@ -78,7 +78,7 @@ export default function TransactionsPage() {
               placeholder="Search transactions..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 outline-none rounded-xl text-sm shadow-xs border border-b-cyan-300 focus:ring-2 transition-all"
+              className="w-full pl-10 pr-4 py-2.5 outline-none border-2  border-[#0f1a2a] rounded-4xl text-sm  focus:ring-2 transition-all"
             />
           </div>
 
@@ -86,7 +86,7 @@ export default function TransactionsPage() {
           <select
             value={filters.status || ""}
             onChange={(e) => updateFilter("status", e.target.value as any)}
-            className="px-3 py-2 shadow-xs rounded-lg text-sm">
+            className="px-3 py-2 shadow-md rounded-lg text-sm border border-[#0f1a2a]">
             <option value="">All Status</option>
             <option value="success">Success</option>
             <option value="pending">Pending</option>
@@ -96,7 +96,7 @@ export default function TransactionsPage() {
           <select
             value={filters.type || ""}
             onChange={(e) => updateFilter("type", e.target.value as any)}
-            className="px-3 py-2 shadow-xs rounded-lg text-sm">
+            className="px-3 py-2 shadow-md rounded-lg border border-[#0f1a2a] text-sm">
             <option value="">All Type</option>
             <option value="credit">Credit</option>
             <option value="debit">Debit</option>
@@ -105,7 +105,7 @@ export default function TransactionsPage() {
           {/* Clear */}
           <button
             onClick={() => setFilters({})}
-            className="px-3 py-2 text-sm shadow-xs rounded-lg">
+            className="px-3 py-2 text-sm shadow-md border border-[#0f1a2a] rounded-xl">
             Clear
           </button>
         </div>

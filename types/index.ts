@@ -8,14 +8,6 @@ export type AuthData = {
 }
 
 
-export type TransactionFilters = {
-  status?: Transaction["status"];
-  type?: Transaction["type"];
-  channel?: Transaction["channel"];
-  category?: string;
-};
-
-
 // ─── Transaction ─────────────────────────────────────────────────────────────
 
 export type TransactionType = "credit" | "debit";
@@ -113,6 +105,20 @@ export interface InventoryItem {
   lowStockThreshold: number;
   lastActivity?: string; // ISO string
 }
+
+
+export type TransactionFilters = {
+  status?: Transaction["status"];
+  type?: Transaction["type"];
+  channel?: Transaction["channel"];
+  category?: string;
+};
+
+export type InventoryFilters = {
+  stockStatus?: "in_stock" | "low_stock" | "out_of_stock";
+  priceRange?: [number, number];
+  category?: string;
+};
 
 // ─── AI Summary ──────────────────────────────────────────────────────────────
 

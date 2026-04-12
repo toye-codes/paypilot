@@ -5,7 +5,7 @@ import Image from "next/image";
 import logo from "../../../public/logo.png";
 import InputField from "@/components/auth/InputField";
 
-import { useLogin } from "@/hooks/useLogin";
+import { useLogin } from "@/hooks/auth/useLogin"; 
 
 const LoginPage = () => {
 

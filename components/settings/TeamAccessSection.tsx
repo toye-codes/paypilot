@@ -76,7 +76,7 @@ export default function TeamAccessSection() {
                   <div
                     className={`w-9 h-9 flex items-center justify-center rounded-full text-sm font-semibold text-white ${
                       member.role === "admin" || member.role === "super_admin"
-                        ? "bg-gradient-to-br from-blue-500 to-purple-500"
+                        ? "bg-linear-to-br from-blue-500 to-purple-500"
                         : "bg-green-500"
                     }`}>
                     {member.name

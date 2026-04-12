@@ -19,8 +19,8 @@ export function Button({
     <button
       type={type}
       onClick={onClick}
-      className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-white transition-opacity hover:opacity-90 
-      bg-linear-to-br from-emerald-500 to-blue-500 ${className}`}>
+      className={`flex items-center justify-center gap-2 px-2 sm:px-4 py-1 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium text-white transition-opacity hover:opacity-90 
+      bg-[#0f1a2a] ${className}`}>
       {icon && <span className="flex items-center">{icon}</span>}
       {children}
     </button>
