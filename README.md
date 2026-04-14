@@ -91,28 +91,45 @@ The goal is to simulate how real-world fintech dashboards are structured on the 
 ## 📁 Project Structure
 
 ```
-app/
-  auth/
-  dashboard/
-  inventory/
-  settings/
-  transactions/
+  /app
+    /inventory
+      page.tsx
+    /transactions
+      page.tsx
+    layout.tsx
 
-components/
-  auth/
-  dashboard/
-  global/
-  inventory/
-  transaction/
+  /features
+    /inventory
+      /components
+        InventoryView.tsx
+        InventoryTable.tsx
+        InventoryFilters.tsx
 
-data/
-hooks/
-lib/
-stores/
-utility/
-types/
-```
+      /hooks
+        useInventoryStore.ts
+        useInventoryLogic.ts
 
+      /services
+        inventory.api.ts
+
+      /utils
+        filterInventory.ts
+
+      index.ts
+
+    /transactions
+      /components
+      /hooks
+      /services
+      /utils
+      index.ts
+
+  /shared
+    /components
+    /hooks
+    /utils
+
+  /lib
 ---
 
 ## 🚀 Getting Started

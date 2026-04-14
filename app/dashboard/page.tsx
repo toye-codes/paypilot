@@ -1,16 +1,16 @@
 "use client";
 
-import AppLayout from "@/components/global/AppLayout";
-import SectionHeader from "@/components/global/SectionHeader";
-import EmptyState from "@/components/global/EmptyState";
-import { SkeletonRow } from "@/components/global/Skeletons";
-import TransactionsTable from "@/components/transactions/TransactionsTable";
-import { useTransactions } from "../../hooks/transactions/useTransactions";
+import AppLayout from "@/shared/components/global/AppLayout";
+import SectionHeader from "@/shared/components/global/SectionHeader";
+import EmptyState from "@/shared/components/global/EmptyState";
+import { SkeletonRow } from "@/shared/components/global/Skeletons";
+import TransactionsTable from "@/features/transactions/components/TransactionsTable";
+import { useTransactions } from "@/features/transactions/hooks/useTransactions";
 import { ArrowLeftRight } from "lucide-react";
 
-import RightPanel from "@/components/dashboard/RightPanel";
-import StatsSection from "@/components/dashboard/StatsSection";
-import ChartSection from "@/components/dashboard/ChartSection";
+import RightPanel from "@/shared/components/dashboard/RightPanel";
+import StatsSection from "@/shared/components/dashboard/StatsSection";
+import ChartSection from "@/shared/components/dashboard/ChartSection";
 
 export default function DashboardPage() {
   const { data: txData, loading: txLoading } = useTransactions();

@@ -1,0 +1,1 @@
+export {InventoryView} from "@/features/inventory/components/InventoryView";

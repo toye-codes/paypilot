@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "@/public/logo.png"
 
-import { useSignup } from "@/hooks/auth/useSignup";
+import { useSignup } from "@/features/auth/hooks/useSignup";
 
 
 const SignupPage = () => {
@@ -14,7 +14,6 @@ const SignupPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-(--content-bg)">
       <div className="w-full max-w-md">
-        {/* Logo */}
         {/* Logo */}
         <div className="flex flex-col items-center space-y-2 ">
           <Image src={logo} alt="PayPilot" className="w-10 h-10" />
