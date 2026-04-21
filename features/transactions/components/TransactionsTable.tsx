@@ -1,19 +1,22 @@
 import Badge from "@/shared/components/global/Badge";
-import { AlertTriangle, Pencil, Trash2 } from "lucide-react";
-import type {
-  Transaction,
-  TransactionCategory,
-  TransactionStatus,
-} from "@/types";
+import { AlertTriangle, Pencil, Trash2, Flag } from "lucide-react";
+
+import { formatAmount } from "@/utility/formatAmount";
+import { formatDate } from "@/utility/formatDate";
+
+import { useState } from "react";
+
+import type { Transaction, TransactionCategory, TransactionStatus, } from "@/types";
+import type { Payload } from "recharts/types/component/DefaultTooltipContent";
+
+import FlagModal, { PayloadProps } from "./FlagModal";
+
 
 interface TransactionsTableProps {
   transactions: Transaction[];
 }
 
-const categoryVariant: Record<
-  TransactionCategory,
-  "green" | "blue" | "yellow" | "red" | "gray"
-> = {
+const categoryVariant: Record< TransactionCategory, "green" | "blue" | "yellow" | "red" | "gray"> = {
   sales: "green",
   inventory: "blue",
   utilities: "yellow",
@@ -28,39 +31,38 @@ const statusVariant: Record<TransactionStatus, "green" | "yellow" | "red"> = {
   failed: "red",
 };
 
-function formatAmount(amount: number, type: "credit" | "debit") {
-  const formatted = `₦${amount.toLocaleString()}`;
-  return type === "credit" ? `+${formatted}` : `-${formatted}`;
-}
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-NG", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
-}
+export default function TransactionsTable({ transactions, }: TransactionsTableProps) {
+const [isFlagOpen, setIsFlagOpen] = useState(false);
+const [selectedTransaction, setSelectedTransaction] =
+  useState<Transaction | null>(null);
 
-export default function TransactionsTable({
-  transactions,
-}: TransactionsTableProps) {
+const handleOpenFlag = (tx: Transaction) => {
+  setSelectedTransaction(tx);
+  setIsFlagOpen(true);
+};
+
+const handleFlagSubmit = (payload: PayloadProps) => {
+  console.log(payload);
+};
+
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-sm border-collapse">
         {/* Header */}
         <thead>
-          <tr className="border-b border-gray-200">
+          <tr className="border-b bg-white border-gray-200">
             {[
               "Description",
               "Category",
               "Date",
               "Status",
               "Amount",
-              // "Actions",
+              "Actions",
             ].map((h) => (
               <th
                 key={h}
-                className={`px-4 py-3 text-xs font-semibold uppercase tracking-wide text-left text-gray-400 ${
+                className={`px-4 py-3 text-xs font-semibold uppercase tracking-wide text-left text-gray-900 ${
                   h === "Amount" || h === "Actions" ? "text-right" : ""
                 }`}>
                 {h}
@@ -116,7 +118,7 @@ export default function TransactionsTable({
               </td>
 
               {/* Actions */}
-              {/* <td className="px-4 py-3">
+              <td className="px-4 py-3">
                 <div className="flex items-center justify-end gap-2">
                   <button className="p-2 rounded-lg hover:bg-gray-100 transition">
                     <Pencil size={16} className="text-gray-500" />
@@ -124,12 +126,26 @@ export default function TransactionsTable({
                   <button className="p-2 rounded-lg hover:bg-red-50 transition">
                     <Trash2 size={16} className="text-red-500" />
                   </button>
+                  <button
+                    className="p-2 rounded-lg hover:bg-blue-50 transition"
+                    onClick={() => setIsFlagOpen(true)}>
+                    <Flag size={16} className={` text-blue-500`} />
+                  </button>
                 </div>
-              </td> */}
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {isFlagOpen && (
+        <FlagModal
+          isOpen={isFlagOpen}
+          onClose={() => setIsFlagOpen(false)}
+          onSubmit={handleFlagSubmit}
+          transaction={selectedTransaction}
+        />
+      )}
     </div>
   );
 }
