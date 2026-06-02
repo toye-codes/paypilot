@@ -11,6 +11,7 @@ export const transactions: Transaction[] = [
     channel: "POS",
     status: "success",
   },
+
   {
     id: "txn-002",
     description: "Supplier payment – Gadget Wholesale Ltd",
@@ -20,7 +21,14 @@ export const transactions: Transaction[] = [
     type: "debit",
     channel: "transfer",
     status: "success",
+    flag: {
+      reason: "duplicate_transaction",
+      additionalDetails: "Looks like this payment was sent twice",
+      flaggedAt: "2026-03-25T10:00:00Z",
+      resolved: false,
+    },
   },
+
   {
     id: "txn-003",
     description: "Electricity bill – March",
@@ -31,6 +39,7 @@ export const transactions: Transaction[] = [
     channel: "transfer",
     status: "success",
   },
+
   {
     id: "txn-004",
     description: "Product sale – Smart Watch",
@@ -41,7 +50,15 @@ export const transactions: Transaction[] = [
     channel: "POS",
     status: "success",
     anomaly: true,
+    flag: {
+      reason: "suspicious_activity",
+      additionalDetails: "Unusually high sale compared to average",
+      flaggedAt: "2026-03-24T12:00:00Z",
+      resolved: true,
+      resolvedAt: "2026-03-24T13:00:00Z",
+    },
   },
+
   {
     id: "txn-005",
     description: "Staff salary – March batch",
@@ -52,6 +69,7 @@ export const transactions: Transaction[] = [
     channel: "transfer",
     status: "success",
   },
+
   {
     id: "txn-006",
     description: "Bank service charge",
@@ -62,6 +80,7 @@ export const transactions: Transaction[] = [
     channel: "transfer",
     status: "success",
   },
+
   {
     id: "txn-007",
     description: "Product sale – Bluetooth Speaker",
@@ -72,6 +91,7 @@ export const transactions: Transaction[] = [
     channel: "cash",
     status: "success",
   },
+
   {
     id: "txn-008",
     description: "Office supplies – Printer paper",
@@ -82,6 +102,7 @@ export const transactions: Transaction[] = [
     channel: "cash",
     status: "success",
   },
+
   {
     id: "txn-009",
     description: "Product sale – Wireless Headphones",
@@ -93,6 +114,7 @@ export const transactions: Transaction[] = [
     status: "success",
     anomaly: true,
   },
+
   {
     id: "txn-010",
     description: "Online ad spend – Facebook",
@@ -103,6 +125,7 @@ export const transactions: Transaction[] = [
     channel: "transfer",
     status: "pending",
   },
+
   {
     id: "txn-011",
     description: "Product sale – Phone Charger Bulk",
@@ -113,6 +136,7 @@ export const transactions: Transaction[] = [
     channel: "transfer",
     status: "success",
   },
+
   {
     id: "txn-012",
     description: "Supplier refund – Defective units",

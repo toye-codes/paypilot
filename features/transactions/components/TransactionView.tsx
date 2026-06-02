@@ -15,7 +15,7 @@ import { useTransactionFilter } from "@/features/transactions/hooks/useTransacti
 
 import type { TransactionFilters } from "@/types";
 
-import { Search, Filter, Plus, ArrowLeftRight } from "lucide-react";
+import { Search,Plus, ArrowLeftRight } from "lucide-react";
 
 export function TransactionsView() {
   const { data, loading } = useTransactions();
@@ -23,10 +23,7 @@ export function TransactionsView() {
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState<TransactionFilters>({});
 
-  const updateFilter = <K extends keyof TransactionFilters>(
-    key: K,
-    value: TransactionFilters[K] | "",
-  ) => {
+  const updateFilter = <K extends keyof TransactionFilters>( key: K, value: TransactionFilters[K] | "",) => {
     setFilters((prev) => ({
       ...prev,
       [key]: value || undefined,

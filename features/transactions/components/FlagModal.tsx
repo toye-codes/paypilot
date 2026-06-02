@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Transaction } from "@/types";
 
+import { useTransactionStore } from "@/stores/useTransactionStore";
+
 export type PayloadProps = {
   reason: string;
   description: string;
@@ -25,6 +27,7 @@ export default function FlagModal({
 }: FlagModalProps) {
   const [reason, setReason] = useState("");
   const [description, setDescription] = useState("");
+  const {flagTransaction} = useTransactionStore()
 
   if (!isOpen) return null;
 

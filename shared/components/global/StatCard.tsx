@@ -35,7 +35,7 @@ export default function StatCard({
         : "var(--text-muted)";
 
   return (
-    <div className="rounded-2xl p-4 sm:p-5 flex flex-col gap-2 sm:gap-3 bg-white shadow-sm w-full">
+    <div className="rounded-2xl p-4 sm:p- flex flex-col gap-2 sm:gap- bg-white shadow-sm w-full">
       {/* Top Row */}
       <div className="flex items-center justify-between">
         <p

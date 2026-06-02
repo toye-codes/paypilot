@@ -33,6 +33,14 @@ export interface Transaction {
   anomaly?: boolean;
   productId?: string;
   quantity?: number;
+  flag?: {
+    reason: string;
+    additionalDetails?: string;
+    flaggedAt: string;
+
+    resolved?: boolean;
+    resolvedAt?: string;
+  };
 }
 
 export type FormState = {

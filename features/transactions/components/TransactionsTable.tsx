@@ -1,15 +1,13 @@
 import Badge from "@/shared/components/global/Badge";
 import { AlertTriangle, Pencil, Trash2, Flag } from "lucide-react";
-
 import { formatAmount } from "@/utility/formatAmount";
 import { formatDate } from "@/utility/formatDate";
-
 import { useState } from "react";
-
 import type { Transaction, TransactionCategory, TransactionStatus, } from "@/types";
-import type { Payload } from "recharts/types/component/DefaultTooltipContent";
 
 import FlagModal, { PayloadProps } from "./FlagModal";
+
+import { useTransactionStore } from "@/stores/useTransactionStore";
 
 
 interface TransactionsTableProps {
@@ -33,18 +31,26 @@ const statusVariant: Record<TransactionStatus, "green" | "yellow" | "red"> = {
 
 
 export default function TransactionsTable({ transactions, }: TransactionsTableProps) {
-const [isFlagOpen, setIsFlagOpen] = useState(false);
-const [selectedTransaction, setSelectedTransaction] =
-  useState<Transaction | null>(null);
+    const [isFlagOpen, setIsFlagOpen] = useState(false);
+    const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
+    const { deleteTransaction, flagTransaction } = useTransactionStore();
 
-const handleOpenFlag = (tx: Transaction) => {
-  setSelectedTransaction(tx);
-  setIsFlagOpen(true);
-};
 
-const handleFlagSubmit = (payload: PayloadProps) => {
-  console.log(payload);
-};
+    const handleOpenFlag = (tx: Transaction) => {
+      setSelectedTransaction(tx);
+      setIsFlagOpen(true);
+    };
+
+    const handleFlagSubmit = (payload: PayloadProps) => {
+      console.log(payload);
+
+        if (!payload.transactionId) return;
+
+        flagTransaction(payload.transactionId, {
+          reason: payload.reason,
+          additionalDetails: payload.description,
+        });      
+    };
 
   return (
     <div className="overflow-x-auto">
@@ -123,13 +129,19 @@ const handleFlagSubmit = (payload: PayloadProps) => {
                   <button className="p-2 rounded-lg hover:bg-gray-100 transition">
                     <Pencil size={16} className="text-gray-500" />
                   </button>
-                  <button className="p-2 rounded-lg hover:bg-red-50 transition">
+                  <button
+                    onClick={() => deleteTransaction(tx.id)}
+                    className="p-2 rounded-lg hover:bg-red-50 transition">
                     <Trash2 size={16} className="text-red-500" />
                   </button>
                   <button
                     className="p-2 rounded-lg hover:bg-blue-50 transition"
-                    onClick={() => setIsFlagOpen(true)}>
-                    <Flag size={16} className={` text-blue-500`} />
+                    onClick={() => handleOpenFlag(tx)}>
+                    <Flag
+                      size={20}
+                      fill={tx.flag ? "currentColor" : "none"}
+                      className={tx.flag ? "text-red-700" : "text-blue-500"}
+                    />
                   </button>
                 </div>
               </td>

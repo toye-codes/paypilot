@@ -12,7 +12,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     <section className="h-screen overflow-hidden">
       {/* Topbar (mobile only) */}
       <div className="bg-white shadow-md flex items-center justify-between p-3">
-        <button onClick={() => setOpen(true)}>
+        <button
+          className=""
+          onClick={() => setOpen(true)}>
           <Menu />
         </button>
 
