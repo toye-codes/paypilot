@@ -1,14 +1,14 @@
 // Auth Data
 
 export type AuthData = {
-    email: string;
-    password: string;
-    businessName?: string;
-    ownerName?: string;
-}
+  email?: string;
+  phone?: string;
+  password: string;
+  businessName?: string;
+  ownerName?: string;
+};
 
-
-// ─── Transaction ─────────────────────────────────────────────────────────────
+//  Transaction
 
 export type TransactionType = "credit" | "debit";
 export type TransactionCategory =
@@ -43,6 +43,7 @@ export interface Transaction {
   };
 }
 
+// Form State
 export type FormState = {
   amount: number | "";
   type: TransactionType | "";
@@ -55,7 +56,7 @@ export type FormState = {
   date: string;
 };
 
-// ─── Alert ────────────────────────────────────────────────────────────────────
+// Alert
 
 export type AlertType =
   | "duplicate"
@@ -113,7 +114,6 @@ export interface InventoryItem {
   lowStockThreshold: number;
   lastActivity?: string; // ISO string
 }
-
 
 export type TransactionFilters = {
   status?: Transaction["status"];

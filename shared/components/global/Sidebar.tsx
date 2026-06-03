@@ -11,7 +11,7 @@ import {
   LogOut,
 } from "lucide-react";
 
-import logo from "@/public/logo.png"
+import logo from "@/public/logo.png";
 import Image from "next/image";
 
 const navItems = [
@@ -26,20 +26,26 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed top-0 left-0 h-screen w-52 flex flex-col z-30"
+    <aside
+      className="fixed top-0 left-0 h-screen w-52 flex flex-col z-30"
       style={{ background: "var(--sidebar-bg)" }}>
       {/* Logo */}
       <div className="px-6 py-6 flex items-center gap-2">
         <div className="w-8 h-8 rounded-lg flex items-center justify-center">
           <Image src={logo} alt="PayPilot" />
         </div>
-        <span className="text-white font-bold text-lg tracking-tight">PayPilot</span>
+        <span className="text-white font-bold text-lg tracking-tight">
+          PayPilot
+        </span>
       </div>
 
       {/* Nav */}
       <nav className="flex-1 px-3 mt-2">
-        <p className="text-xs font-semibold uppercase tracking-widest px-3 mb-3"
-          style={{ color: "#4b5563" }}>Main Menu</p>
+        <p
+          className="text-xs font-semibold uppercase tracking-widest px-3 mb-3"
+          style={{ color: "var(--sidebar-muted)" }}>
+          Main Menu
+        </p>
         <ul className="space-y-1">
           {navItems.map(({ label, href, icon: Icon }) => {
             const active = pathname.startsWith(href);
@@ -49,10 +55,13 @@ const Sidebar = () => {
                   href={href}
                   className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150"
                   style={{
-                    background: active ? "rgba(59,130,246,0.15)" : "transparent",
-                    color: active ? "#60a5fa" : "#9ca3af",
-                  }}
-                >
+                    background: active
+                      ? "var(--sidebar-active-bg)"
+                      : "transparent",
+                    color: active
+                      ? "var(--sidebar-active)"
+                      : "var(--sidebar-text)",
+                  }}>
                   <Icon size={17} />
                   {label}
                 </Link>
@@ -64,18 +73,27 @@ const Sidebar = () => {
 
       {/* Bottom */}
       <div className="px-3 pb-6">
-        <div className="rounded-xl p-3 mb-3" style={{ background: "rgba(255,255,255,0.04)" }}>
-          <p className="text-xs font-semibold text-white truncate">Acme Electronics</p>
-          <p className="text-xs mt-0.5 truncate" style={{ color: "#6b7280" }}>admin@acme.ng</p>
+        <div
+          className="rounded-xl p-3 mb-3"
+          style={{ background: "var(--sidebar-surface)" }}>
+          <p className="text-xs font-semibold text-white truncate">
+            Acme Electronics
+          </p>
+          <p
+            className="text-xs mt-0.5 truncate"
+            style={{ color: "var(--sidebar-muted)" }}>
+            admin@acme.ng
+          </p>
         </div>
-        <button className="flex items-center gap-2 text-sm w-full px-3 py-2 rounded-xl transition-colors"
-          style={{ color: "#6b7280" }}>
+        <button
+          className="flex items-center gap-2 text-sm w-full px-3 py-2 rounded-xl transition-colors"
+          style={{ color: "var(--sidebar-muted)" }}>
           <LogOut size={15} />
           Logout
         </button>
       </div>
     </aside>
   );
-}
+};
 
 export default Sidebar;

@@ -1,13 +1,23 @@
-import { useState } from "react";
 import { useStats } from "@/hooks/useStats";
+
 import StatCard from "../global/StatCard";
 import { SkeletonCard } from "../global/Skeletons";
+
+import QuickActions from "./QuickActions";
 
 function formatCurrency(value: number) {
   return `₦${value.toLocaleString()}`;
 }
 
-const StatsSection = () => {
+type StatsSectionProps = {
+  onAddTransaction: () => void;
+  onAddProduct: () => void;
+};
+
+const StatsSection = ({
+  onAddTransaction,
+  onAddProduct,
+}: StatsSectionProps) => {
   const { data: statsData, loading: statsLoading } = useStats();
 
   return (
@@ -26,6 +36,11 @@ const StatsSection = () => {
               />
             ))}
       </div>
+
+      <QuickActions
+        onAddTransaction={onAddTransaction}
+        onAddProduct={onAddProduct}
+      />
     </div>
   );
 };

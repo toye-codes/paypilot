@@ -4,35 +4,48 @@
 
 :root {
   /* Sidebar */
-  --sidebar-bg: #0f1a2a;
-  --sidebar-border: #1c2a3a;
+  --sidebar-bg: #00000f;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-text: #d1d5db;
+  --sidebar-muted: #94a3b8;
+  --sidebar-active: #93c5fd;
+  --sidebar-active-bg: rgba(147, 197, 253, 0.14);
+  --sidebar-surface: rgba(255, 255, 255, 0.05);
 
   /* Layout */
-  --content-bg: #f1f3f7;
+  --content-bg: #f8fafc;
   --card-bg: #ffffff;
-  --border: #e4e7ec;
+  --surface-bg: #f3f4f6;
+  --muted-bg: #e2e8f0;
+  --border: #d1d5db;
 
   /* Text */
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --text-muted: #9aa3af;
+  --black: #000000;
+  --text-primary: #111827;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
 
   /* Primary */
-  --primary: #4f7cff;
-  --primary-hover: #3f6df0;
-  --primary-soft: #eaf0ff;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-soft: #eff6ff;
+  --blue-border: #bfdbfe;
 
   /* Status Colors */
-  --green: #7fb3a8;
-  --green-bg: #edf6f4;
+  --success: #16a34a;
+  --success-bg: #dcfce7;
 
-  --red: #e6a19a;
-  --red-bg: #fbefee;
+  --danger: #ef4444;
+  --danger-bg: #fee2e2;
 
-  --purple: #a78bfa;
-  --purple-bg: #f3f0ff;
+  --warning: #f59e0b;
+  --warning-bg: #fef3c7;
 
-  --blue: #93c5fd;
+  --purple: #7c3aed;
+  --purple-bg: #ede9fe;
+
+  --blue: #2563eb;
   --blue-bg: #eff6ff;
 
   /* Shadows */
@@ -67,12 +80,7 @@ body {
 
 /* Skeleton */
 .skeleton {
-  background: linear-gradient(
-    90deg,
-    #e4e7ec 25%,
-    #f1f3f7 50%,
-    #e4e7ec 75%
-  );
+  background: linear-gradient(90deg, #e4e7ec 25%, #f1f3f7 50%, #e4e7ec 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 6px;

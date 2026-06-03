@@ -23,14 +23,14 @@ export default function QuickActions({
   };
 
   return (
-    <div className="bg-white shadow-md p-4 rounded-lg">
+    <div className=" bg-white shadow-md p-4 my-4 rounded-lg">
       {/* Title */}
       <p className="text-xs font-semibold uppercase tracking-wide mb-3 text-gray-400">
         Quick Actions
       </p>
 
       {/* Actions */}
-      <div className="flex flex-col gap-2">
+      <div className="flex gap-2">
         {actions.map(({ label, icon: Icon, key }) => (
           <button
             key={key}

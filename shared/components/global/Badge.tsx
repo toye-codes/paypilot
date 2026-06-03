@@ -4,19 +4,18 @@ interface BadgeProps {
 }
 
 const variantStyles: Record<string, React.CSSProperties> = {
-  green: { background: "var(--green-bg)", color: "var(--green)" },
-  red: { background: "var(--red-bg)", color: "var(--red)" },
-  yellow: { background: "var(--yellow-bg)", color: "var(--yellow)" },
+  green: { background: "var(--success-bg)", color: "var(--success)" },
+  red: { background: "var(--danger-bg)", color: "var(--danger)" },
+  yellow: { background: "var(--warning-bg)", color: "var(--warning)" },
   blue: { background: "var(--blue-bg)", color: "var(--blue)" },
-  gray: { background: "#f3f4f6", color: "#6b7280" },
+  gray: { background: "var(--muted-bg)", color: "var(--text-secondary)" },
 };
 
 export default function Badge({ label, variant = "gray" }: BadgeProps) {
   return (
     <span
       className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize"
-      style={variantStyles[variant]}
-    >
+      style={variantStyles[variant]}>
       {label}
     </span>
   );

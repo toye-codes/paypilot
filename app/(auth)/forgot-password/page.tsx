@@ -1,15 +1,15 @@
 import Link from "next/link";
-import { TrendingUp, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
+
+import logo from "@/public/logo.png";
 
 export default function ForgotPasswordPage() {
   return (
     <div className="min-h-screen flex items-center justify-center p-6" style={{ background: "var(--content-bg)" }}>
       <div className="w-full max-w-md">
         <div className="flex justify-center mb-8">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg"
-            style={{ background: "linear-gradient(135deg, #3b82f6, #8b5cf6)" }}>
-            <TrendingUp size={20} className="text-white" />
-          </div>
+            <Image src={logo} alt="PayPilot" className="w-12 h-12" />
         </div>
 
         <div className="rounded-2xl p-8"
@@ -28,15 +28,15 @@ export default function ForgotPasswordPage() {
                 className="w-full px-4 py-3 rounded-xl text-sm border outline-none focus:ring-2 transition-all bg-gray-50" />
             </div>
 
-            <button type="button" className="w-full py-3 mt-2 rounded-xl text-sm font-semibold text-white transition-opacity hover:opacity-90 shadow-md"
-              style={{ background: "linear-gradient(135deg, #3b82f6, #8b5cf6)" }}>
+            <button type="button"
+              className="w-full bg-black text-white py-3 rounded-lg font-medium hover:opacity-90 transition"
+            >
               Send Reset Link
             </button>
           </form>
 
           <div className="mt-6 flex justify-center">
-            <Link href="/auth/login" className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-gray-900"
-              style={{ color: "var(--text-secondary)" }}>
+            <Link href="/login" className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-gray-900">
               <ArrowLeft size={16} />
               Back to login
             </Link>

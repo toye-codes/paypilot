@@ -15,7 +15,7 @@ import { useTransactionFilter } from "@/features/transactions/hooks/useTransacti
 
 import type { TransactionFilters } from "@/types";
 
-import { Search,Plus, ArrowLeftRight } from "lucide-react";
+import { Search, Plus, ArrowLeftRight } from "lucide-react";
 
 export function TransactionsView() {
   const { data, loading } = useTransactions();
@@ -23,7 +23,10 @@ export function TransactionsView() {
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState<TransactionFilters>({});
 
-  const updateFilter = <K extends keyof TransactionFilters>( key: K, value: TransactionFilters[K] | "",) => {
+  const updateFilter = <K extends keyof TransactionFilters>(
+    key: K,
+    value: TransactionFilters[K] | "",
+  ) => {
     setFilters((prev) => ({
       ...prev,
       [key]: value || undefined,
@@ -31,7 +34,11 @@ export function TransactionsView() {
   };
 
   // Apply filtering
-  const filteredTransactions = useTransactionFilter({ data: data?.all || [], filters, search});
+  const filteredTransactions = useTransactionFilter({
+    data: data?.all || [],
+    filters,
+    search,
+  });
 
   return (
     <AppLayout>
@@ -71,14 +78,16 @@ export function TransactionsView() {
               placeholder="Search transactions..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 outline-none border-2  border-[#0f1a2a] rounded-4xl text-sm  focus:ring-2 transition-all"
+              className="w-full pl-10 pr-4 py-2.5 outline-none border-2 rounded-4xl text-sm focus:ring-2 transition-all"
+              style={{ borderColor: "var(--border)" }}
             />
           </div>
 
           <select
             value={filters.status || ""}
             onChange={(e) => updateFilter("status", e.target.value as any)}
-            className="px-3 py-2 shadow-md rounded-lg text-sm border border-[#0f1a2a]">
+            className="px-3 py-2 shadow-md rounded-lg text-sm border"
+            style={{ borderColor: "var(--border)" }}>
             <option value="">All Status</option>
             <option value="success">Success</option>
             <option value="pending">Pending</option>
@@ -88,7 +97,8 @@ export function TransactionsView() {
           <select
             value={filters.type || ""}
             onChange={(e) => updateFilter("type", e.target.value as any)}
-            className="px-3 py-2 shadow-md rounded-lg border border-[#0f1a2a] text-sm">
+            className="px-3 py-2 shadow-md rounded-lg border text-sm"
+            style={{ borderColor: "var(--border)" }}>
             <option value="">All Type</option>
             <option value="credit">Credit</option>
             <option value="debit">Debit</option>
@@ -97,7 +107,8 @@ export function TransactionsView() {
           {/* Clear */}
           <button
             onClick={() => setFilters({})}
-            className="px-3 py-2 text-sm shadow-md border border-[#0f1a2a] rounded-xl">
+            className="px-3 py-2 text-sm shadow-md border rounded-xl"
+            style={{ borderColor: "var(--border)" }}>
             Clear
           </button>
         </div>

@@ -32,32 +32,40 @@ const severityColors = {
   critical: "red",
 } as const;
 
-export default function NotificationCard({ notification }: NotificationCardProps) {
+export default function NotificationCard({
+  notification,
+}: NotificationCardProps) {
   const Icon = typeIcons[notification.type];
   const color = severityColors[notification.severity];
 
   return (
     <div
-      className={`p-4 rounded-xl border transition-colors ${
-        notification.isRead
-          ? "bg-white border-gray-200"
-          : "bg-blue-50 border-blue-200"
-      }`}
-    >
+      className="p-4 rounded-xl border transition-colors"
+      style={{
+        background: notification.isRead
+          ? "var(--card-bg)"
+          : "var(--primary-soft)",
+        borderColor: notification.isRead
+          ? "var(--border)"
+          : "var(--blue-border)",
+      }}>
       <div className="flex items-start gap-3">
         <div
-          className={`p-2 rounded-lg flex-shrink-0 ${
-            notification.severity === "critical" || notification.severity === "high"
-              ? "bg-red-100"
-              : "bg-gray-100"
-          }`}
-        >
+          className="p-2 rounded-lg shrink-0"
+          style={{
+            background:
+              notification.severity === "critical" ||
+              notification.severity === "high"
+                ? "var(--danger-bg)"
+                : "var(--muted-bg)",
+          }}>
           <Icon
             size={16}
             style={{
               color:
-                notification.severity === "critical" || notification.severity === "high"
-                  ? "var(--red)"
+                notification.severity === "critical" ||
+                notification.severity === "high"
+                  ? "var(--danger)"
                   : "var(--text-secondary)",
             }}
           />
@@ -66,22 +74,17 @@ export default function NotificationCard({ notification }: NotificationCardProps
           <div className="flex items-start justify-between gap-2">
             <h3
               className="text-sm font-semibold truncate"
-              style={{ color: "var(--text-primary)" }}
-            >
+              style={{ color: "var(--text-primary)" }}>
               {notification.title}
             </h3>
             <Badge label={notification.severity} variant={color} />
           </div>
           <p
             className="text-sm mt-1 leading-relaxed"
-            style={{ color: "var(--text-secondary)" }}
-          >
+            style={{ color: "var(--text-secondary)" }}>
             {notification.message}
           </p>
-          <p
-            className="text-xs mt-2"
-            style={{ color: "var(--text-muted)" }}
-          >
+          <p className="text-xs mt-2" style={{ color: "var(--text-muted)" }}>
             {formatNotificationDate(notification.createdAt)}
           </p>
         </div>

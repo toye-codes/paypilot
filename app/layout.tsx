@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "PayPilot",
   description:
-    " A financial dashboard for small businesses to track transactions, inventory, and receive alerts.",
+    "A financial dashboard for small businesses to track transactions, inventory, and receive alerts.",
 };
 
 export default function RootLayout({
