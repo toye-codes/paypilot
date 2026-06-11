@@ -8,7 +8,10 @@ import {
   Copy,
   TrendingDown,
   XCircle,
+  LogIn,
+  Building2,
 } from "lucide-react";
+
 import type { Alert, AlertType } from "@/types";
 
 interface AlertsPanelProps {
@@ -16,11 +19,15 @@ interface AlertsPanelProps {
   totalCount: number;
 }
 
-const alertIcon: Record<AlertType, React.ReactNode> = {
+const alertIcon: Record<string, React.ReactNode> = {
   duplicate: <Copy size={14} />,
   unusual_spending: <TrendingDown size={14} />,
   low_stock: <AlertTriangle size={14} />,
   failed_transaction: <XCircle size={14} />,
+
+  // New backend alert types
+  login_activity: <LogIn size={14} />,
+  account_created: <Building2 size={14} />,
 };
 
 function formatDate(iso: string) {
@@ -62,7 +69,7 @@ export default function AlertsPanel({ groups, totalCount }: AlertsPanelProps) {
                 className="w-full flex items-center justify-between px-3 py-2.5 text-left transition-colors hover:bg-gray-50">
                 <div className="flex items-center gap-2">
                   <span className="text-yellow-500">
-                    {alertIcon[group.type]}
+                    {alertIcon[group.type] ?? <AlertTriangle size={14} />}
                   </span>
 
                   <span className="text-xs font-medium text-gray-900">

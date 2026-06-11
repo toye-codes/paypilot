@@ -9,7 +9,7 @@ import paypilotAuth from "@/public/paypilotAuth.png";
 import { useSignup } from "@/features/auth/hooks/useSignup";
 
 const SignupPage = () => {
-  const { signupData, handleSignup, handleChange, error } = useSignup();
+  const { signupData, handleSignup, handleChange, error, isPending } = useSignup();
 
   return (
     <div className="min-h-screen flex">
@@ -71,9 +71,9 @@ const SignupPage = () => {
             </div>
           )}
 
-          {/* Form */}
+
+          {/* Form field */}
           <form className="flex flex-col gap-5" onSubmit={handleSignup}>
-            {/* Business Name */}
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium">Business Name</label>
 
@@ -87,21 +87,19 @@ const SignupPage = () => {
               />
             </div>
 
-            {/* Owner Name */}
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium">Owner Name</label>
 
               <input
                 type="text"
-                name="ownerName"
-                value={signupData.ownerName}
+                name="name"
+                value={signupData.name}
                 onChange={handleChange}
                 placeholder="Olusanya"
                 className="w-full border rounded-lg px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-black"
               />
             </div>
 
-            {/* Email */}
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium">Email</label>
 
@@ -115,7 +113,19 @@ const SignupPage = () => {
               />
             </div>
 
-            {/* Password */}
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium">Phone Number</label>
+
+              <input
+                type="tel"
+                name="phone"
+                value={signupData.phone}
+                onChange={handleChange}
+                placeholder="+2348012345678"
+                className="w-full border rounded-lg px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-black"
+              />
+            </div>
+
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium">Password</label>
 
@@ -131,8 +141,16 @@ const SignupPage = () => {
 
             <button
               type="submit"
-              className="w-full bg-black text-white py-3 rounded-lg font-medium hover:opacity-90 transition">
-              Create Account
+              disabled={isPending}
+              className="w-full bg-black text-white py-3 rounded-lg font-medium hover:opacity-90 transition disabled:opacity-70 disabled:cursor-not-allowed">
+              {isPending ? (
+                <span className="flex items-center justify-center gap-2">
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                  Creating Account...
+                </span>
+              ) : (
+                "Create Account"
+              )}
             </button>
           </form>
 

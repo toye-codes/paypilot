@@ -1,12 +1,17 @@
 // Auth Data
 
 export type AuthData = {
-  email?: string;
-  phone?: string;
+  email: string;
+  phone: string;
   password: string;
   businessName?: string;
-  ownerName?: string;
+  name?: string;
 };
+
+export type LoginPayload = {
+  identifier: string,
+  password: string
+}
 
 //  Transaction
 

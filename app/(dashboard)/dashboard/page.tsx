@@ -14,7 +14,14 @@ import RightPanel from "@/shared/components/dashboard/RightPanel";
 import StatsSection from "@/shared/components/dashboard/StatsSection";
 import ChartSection from "@/shared/components/dashboard/ChartSection";
 
+import { useDashboardOverview } from "@/hooks/dashboard/useDashboardOverview";
+import { mapSummaryToStats } from "@/utility/mapSummaryToStats";
+
+import {useAlerts} from "@/hooks/useAlerts";
+
 import { ArrowLeftRight } from "lucide-react";
+
+
 
 export default function DashboardPage() {
   const [txOpen, setTxOpen] = useState(false);
@@ -22,12 +29,20 @@ export default function DashboardPage() {
 
   const { data: txData, loading: txLoading } = useTransactions();
 
+  const { data: overviewData, isPending: overviewLoading, isError, error } = useDashboardOverview();
+
+  const stats = overviewData?.data?.summary ? mapSummaryToStats(overviewData.data.summary) : [];
+  
+  
+
+  if (isError) {
+    console.error("Failed to load dashboard overview", error);
+  }
+
   return (
     <AppLayout>
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_297px] h-full">
-        {/* MAIN CONTENT */}
         <div className="p-2 overflow-y-auto">
-          {/* Header */}
           <div className="mb-7">
             <h1
               className="text-xl font-bold"
@@ -42,16 +57,15 @@ export default function DashboardPage() {
             </p>
           </div>
 
-          {/* Stats */}
           <StatsSection
+            stats={stats}
+            statsLoading={overviewLoading}
             onAddTransaction={() => setTxOpen(true)}
             onAddProduct={() => setInvOpen(true)}
           />
 
-          {/* Charts */}
           <ChartSection />
 
-          {/* Recent Transactions */}
           <div
             className="rounded-2xl overflow-hidden"
             style={{
@@ -91,7 +105,6 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* RIGHT PANEL */}
         <aside className="hidden lg:block h-full overflow-y-auto">
           <RightPanel
             txOpen={txOpen}

@@ -2,18 +2,27 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { AuthData } from "@/types";
+
+import { AuthData, LoginPayload } from "@/types";
+import { useAuth } from "@/context/AuthContext";
+
+import { useLoginMutation } from "@/hooks/auth/useLoginMutation";
 
 export const useLogin = () => {
   const router = useRouter();
+  const { login } = useAuth();
+
   const [loginData, setLoginData] = useState<AuthData>({
     email: "",
     phone: "",
     password: "",
   });
-  const [error, setError] = useState<string>("");
 
-  // handle change
+  const [error, setError] = useState("");
+
+  const loginMutation = useLoginMutation();
+
+  // Handle chand
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -21,24 +30,61 @@ export const useLogin = () => {
       ...prev,
       [name]: value,
     }));
+
+    if (error) setError("");
   };
 
-  console.log(loginData);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const hasEmail = loginData.email && loginData.email.trim();
-    const hasPhone = loginData.phone && loginData.phone.trim();
-    const hasPassword = loginData.password && loginData.password.trim();
+    const { email, phone, password } = loginData;
 
-    if (!hasPassword) return setError("Please input your password");
-    if (!hasEmail && !hasPhone)
-      return setError("Please input your email or phone number");
+    const hasEmail = email?.trim();
+    const hasPhone = phone?.trim();
+    const hasPassword = password?.trim();
 
-    router.push("/dashboard");
+    const identifier = hasEmail || hasPhone;
 
-    console.log(loginData);
+    if (!hasPassword) {
+      setError("Please input your password");
+      return;
+    }
+
+    if (!identifier) {
+      setError("Please input your email or phone number");
+      return;
+    }
+
+    // Login payload
+    const payload: LoginPayload = {
+      identifier: hasEmail || hasPhone,
+      password: password,
+    };
+
+    // Mutate login details
+    loginMutation.mutate(payload, {
+      onSuccess: (response) => {
+        login(
+          response.user,
+          response.accounts?.[0]?.accountId || response.accountId,
+        );
+        console.log("Login successful:", response);
+        router.push("/dashboard");
+      },
+
+      onError: (error: any) => {
+        setError(
+          error?.response?.data?.message || "Login failed. Please try again.",
+        );
+      },
+    });
   };
 
-  return { handleSubmit, handleChange, loginData, error };
+  return {
+    handleSubmit,
+    handleChange,
+    loginData,
+    error,
+    isPending: loginMutation.isPending,
+  };
 };

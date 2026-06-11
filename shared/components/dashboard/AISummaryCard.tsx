@@ -1,17 +1,11 @@
 import { Bot } from "lucide-react";
-import type { AISummary } from "@/types";
+import ReactMarkdown from "react-markdown";
 
 interface AISummaryCardProps {
-  summary: AISummary;
-}
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleString("en-NG", {
-    day: "2-digit",
-    month: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+  summary: {
+    success: boolean;
+    insights: string;
+  };
 }
 
 export default function AISummaryCard({ summary }: AISummaryCardProps) {
@@ -28,25 +22,19 @@ export default function AISummaryCard({ summary }: AISummaryCardProps) {
           style={{ background: "var(--blue)" }}>
           <Bot size={13} className="text-white" />
         </div>
+
         <span
           className="text-xs font-semibold"
           style={{ color: "var(--blue)" }}>
-          AI Insight
+          Business Insights
         </span>
       </div>
-      <p
-        className="text-sm font-semibold mb-2"
-        style={{ color: "var(--text-primary)" }}>
-        {summary.headline}
-      </p>
-      <p
-        className="text-xs leading-relaxed"
+
+      <div
+        className="prose prose-sm max-w-none text-xs leading-relaxed"
         style={{ color: "var(--text-secondary)" }}>
-        {summary.body}
-      </p>
-      <p className="text-xs mt-3" style={{ color: "var(--text-muted)" }}>
-        Generated {formatDate(summary.generatedAt)}
-      </p>
+        <ReactMarkdown>{summary.insights}</ReactMarkdown>
+      </div>
     </div>
   );
 }
