@@ -80,9 +80,9 @@ export default function InflowOutflowChart({ data, summary }: InflowOutflowChart
           />
         </LineChart>
       </ResponsiveContainer>
-      <p className="text-xs mt-3 leading-relaxed px-1" style={{ color: "var(--text-secondary)" }}>
+      {/* <p className="text-xs mt-3 leading-relaxed px-1" style={{ color: "var(--text-secondary)" }}>
         {summary}
-      </p>
+      </p> */}
     </div>
   );
 }

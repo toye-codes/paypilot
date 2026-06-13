@@ -10,6 +10,8 @@ import { SkeletonRow } from "@/shared/components/global/Skeletons";
 import TransactionsTable from "@/features/transactions/components/TransactionsTable";
 import { useTransactions } from "@/features/transactions/hooks/useTransactions";
 
+import { useTransactionStore } from "@/stores/useTransactionStore";
+
 import RightPanel from "@/shared/components/dashboard/RightPanel";
 import StatsSection from "@/shared/components/dashboard/StatsSection";
 import ChartSection from "@/shared/components/dashboard/ChartSection";
@@ -17,7 +19,6 @@ import ChartSection from "@/shared/components/dashboard/ChartSection";
 import { useDashboardOverview } from "@/hooks/dashboard/useDashboardOverview";
 import { mapSummaryToStats } from "@/utility/mapSummaryToStats";
 
-import {useAlerts} from "@/hooks/useAlerts";
 
 import { ArrowLeftRight } from "lucide-react";
 
@@ -27,15 +28,16 @@ export default function DashboardPage() {
   const [txOpen, setTxOpen] = useState(false);
   const [invOpen, setInvOpen] = useState(false);
 
-  const { data: txData, loading: txLoading } = useTransactions();
+  const { data: txData, isPending: txLoading, isError:txError,} = useTransactions();
 
-  const { data: overviewData, isPending: overviewLoading, isError, error } = useDashboardOverview();
+  const { data: overviewData, isPending: overviewLoading, isError: overviewError, error } = useDashboardOverview();
 
   const stats = overviewData?.data?.summary ? mapSummaryToStats(overviewData.data.summary) : [];
   
   
+  console.log("Transaction data",txData)
 
-  if (isError) {
+  if (overviewError) {
     console.error("Failed to load dashboard overview", error);
   }
 

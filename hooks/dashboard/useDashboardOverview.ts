@@ -6,7 +6,7 @@ export const useDashboardOverview = () => {
   const { account } = useAuth();
 
   return useQuery({
-    queryKey: ["dashboard-overview"],
+    queryKey: ["dashboard-overview", account],
     queryFn: () => overview(account!),
     enabled: !!account,
   });

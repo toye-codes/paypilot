@@ -21,10 +21,10 @@ function Field({ label, children }: FieldProps) {
 }
 
 const TransactionForm = () => {
-  const { handleChange, handleSubmit, formData } = useTransactionForm();
-  const inventory = useInventoryStore((state) => state.inventory);
-  console.log(inventory);
+  const { handleChange, handleSubmit, formData, isSubmitting } =
+    useTransactionForm();
 
+  const inventory = useInventoryStore((state) => state.inventory);
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -55,6 +55,7 @@ const TransactionForm = () => {
           <option value="">Select type</option>
           <option value="credit">Credit</option>
           <option value="debit">Debit</option>
+          <option value="pending">Pending</option>
         </select>
       </Field>
 
@@ -67,14 +68,14 @@ const TransactionForm = () => {
           className={baseInputClass}>
           <option value="">Select category</option>
           {[
-            "Sales",
-            "Inventory",
-            "Utilities",
-            "Operations",
-            "Salary",
-            "Fees",
+            "sales",
+            "inventory",
+            "utilities",
+            "operations",
+            "salary",
+            "fees",
           ].map((c) => (
-            <option key={c} value={c.toLowerCase()}>
+            <option key={c} value={c}>
               {c}
             </option>
           ))}
@@ -84,13 +85,13 @@ const TransactionForm = () => {
       {(formData.category === "sales" || formData.category === "inventory") && (
         <Field label="Product">
           <select
-            name="productId"
-            value={formData.productId || ""}
+            name="productName"
+            value={formData.productName || ""}
             onChange={handleChange}
             className={baseInputClass}>
             <option value="">Select product</option>
             {inventory.map((item) => (
-              <option key={item.productId} value={item.productId}>
+              <option key={item.productId} value={item.name}>
                 {item.name}
               </option>
             ))}
@@ -121,7 +122,7 @@ const TransactionForm = () => {
           className={baseInputClass}>
           <option value="">Select channel</option>
           <option value="transfer">Transfer</option>
-          <option value="pos">POS</option>
+          <option value="POS">POS</option>
           <option value="cash">Cash</option>
         </select>
       </Field>
@@ -164,7 +165,9 @@ const TransactionForm = () => {
       </Field>
 
       {/* Submit */}
-      <Button type="submit">Add Transaction</Button>
+      <Button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "Adding..." : "Add Transaction"}
+      </Button>
     </form>
   );
 };

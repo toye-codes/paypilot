@@ -15,7 +15,9 @@ export type LoginPayload = {
 
 //  Transaction
 
-export type TransactionType = "credit" | "debit";
+// export type TransactionType = "credit" | "debit";
+export type CreateTransactionType = "credit" | "debit" | "pending";
+
 export type TransactionCategory =
   | "sales"
   | "inventory"
@@ -23,7 +25,15 @@ export type TransactionCategory =
   | "operations"
   | "salary"
   | "fees";
-export type TransactionChannel = "transfer" | "POS" | "cash";
+
+export type CreateTransactionCategory =
+  | "sales"
+  | "inventory"
+  | "utilities"
+  | "operations"
+  | "salary"
+  | "fees";
+export type TransactionChannel = string;
 export type TransactionStatus = "success" | "pending" | "failed";
 
 export interface Transaction {
@@ -32,11 +42,13 @@ export interface Transaction {
   category: TransactionCategory;
   date: string;
   amount: number;
-  type: TransactionType;
+  type: CreateTransactionType;
   channel: TransactionChannel;
   status: TransactionStatus;
   anomaly?: boolean;
   productId?: string;
+  productName?: string;
+  product?: string;
   quantity?: number;
   flag?: {
     reason: string;
@@ -48,13 +60,26 @@ export interface Transaction {
   };
 }
 
+
+export type CreateTransactionPayload = {
+  amount: number;
+  type: CreateTransactionType;
+  category: CreateTransactionCategory;
+  channel: string;
+  product: string;
+  quantity: number;
+  description: string;
+  date: string;
+  status: TransactionStatus;
+};
+
 // Form State
 export type FormState = {
   amount: number | "";
-  type: TransactionType | "";
-  category: TransactionCategory | "";
-  productId: "";
-  quantity: number;
+  type: CreateTransactionType | "";
+  category: CreateTransactionCategory | "";
+  productName: string;
+  quantity: number | "";
   channel: TransactionChannel | "";
   status: TransactionStatus | "";
   description: string;

@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { useTransactionStore } from "@/stores/useTransactionStore";
-import { Transaction, FormState } from "@/types";
-import { processTransaction } from "@/features/inventory/utils/processTransaction";
+import { CreateTransactionPayload, FormState, CreateTransactionCategory } from "@/types";
+import { useCreateTransaction } from "./useCreateTransaction";
 
 export const useTransactionForm = () => {
-  const addTransaction = useTransactionStore((state) => state.addTransaction);
+  const createTransaction = useCreateTransaction();
 
   const [formData, setFormData] = useState<FormState>({
     description: "",
     category: "",
-    quantity: 0,
-    productId: "",
+    quantity: "",
+    productName: "",
     date: "",
     amount: "",
     type: "",
@@ -25,14 +24,17 @@ export const useTransactionForm = () => {
     const { name, value } = e.target;
 
     setFormData((prev) => ({
-      ...prev,
-      [name]: name === "amount" ? Number(value) || "" : value,
+      ...prev, [name]:
+        name === "amount" || name === "quantity" ? Number(value) || "" : value,
     }));
   };
 
   // Handle form submit
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const needsProduct =
+      formData.category === "sales" || formData.category === "inventory";
 
     if (
       !formData.amount ||
@@ -41,41 +43,37 @@ export const useTransactionForm = () => {
       !formData.channel ||
       !formData.status ||
       !formData.description ||
-      !formData.quantity
+      (needsProduct && (!formData.productName || !formData.quantity))
     ) {
       return;
     }
 
-    const newTransaction: Transaction = {
-      id: crypto.randomUUID(),
-      description: formData.description,
-      category: formData.category,
-      productId: formData.productId,
-      quantity: formData.quantity,
-      date: formData.date || new Date().toISOString(),
+    const newTransaction: CreateTransactionPayload = {
       amount: Number(formData.amount),
       type: formData.type,
+      category: formData.category.toLocaleLowerCase() as CreateTransactionCategory,
       channel: formData.channel,
+      product: needsProduct ? formData.productName : "",
+      quantity: needsProduct ? Number(formData.quantity) : 0,
+      description: formData.description,
+      date: formData.date || new Date().toISOString().slice(0, 10),
       status: formData.status,
     };
 
-    console.log(formData, "Button clicked");
-    
-
-    // addTransaction(newTransaction);
-    processTransaction(newTransaction);
-
-    // Reset form
-    setFormData({
-      description: "",
-      category: "",
-      productId: "",
-      quantity: 0,
-      date: "",
-      amount: "",
-      type: "",
-      channel: "",
-      status: "",
+    createTransaction.mutate(newTransaction, {
+      onSuccess: () => {
+        setFormData({
+          description: "",
+          category: "",
+          productName: "",
+          quantity: "",
+          date: "",
+          amount: "",
+          type: "",
+          channel: "",
+          status: "",
+        });
+      },
     });
   };
 
@@ -83,5 +81,7 @@ export const useTransactionForm = () => {
     formData,
     handleChange,
     handleSubmit,
+    isSubmitting: createTransaction.isPending,
+    error: createTransaction.error,
   };
 };

@@ -9,7 +9,6 @@ export const overview = async(accountId: string) => {
     });
     const data = response?.data;
 
-    console.log("Dashboard overview data:", data);
     return data;
 }
 
@@ -22,7 +21,6 @@ export const alerts = async (accountId: string) => {
     });
     const data = response?.data;
 
-    console.log("Dashboard alerts data:", data);
     return data;
 }
 
@@ -34,6 +32,5 @@ export const businessInsights = async (accountId: string) => {
     });
     const data = response?.data;
 
-    console.log("Business insights data:", data);
     return data;
 }

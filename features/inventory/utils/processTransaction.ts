@@ -6,9 +6,10 @@ import { useTransactionStore } from "@/stores/useTransactionStore";
 export const processTransaction = (transaction: any) => {
   const { addTransaction } = useTransactionStore.getState();
   const { increaseInventory, decreaseInventory } = useInventoryStore.getState();
+  const { inventory } = useInventoryStore.getState();
 
   // Check Inventory for Item condition
-  const category = transaction.category;
+  const category = transaction.category?.toLowerCase();
   const status = transaction.status;
   const action = checkInventoryItem({ category, status });
 
@@ -18,7 +19,16 @@ export const processTransaction = (transaction: any) => {
   }
 
 // Get productid and quantity
-  const { productId, quantity } = transaction;
+  const productName = transaction.productName ?? transaction.product;
+  const productId =
+    transaction.productId ??
+    inventory.find((item) => item.name === productName)?.productId;
+  const { quantity } = transaction;
+
+  if (!productId || !quantity) {
+    addTransaction(transaction);
+    return;
+  }
   
   //Update inventory
 if (action === "increase") {

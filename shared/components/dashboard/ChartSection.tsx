@@ -3,13 +3,18 @@ import InflowOutflowChart from "./InflowOutflowChart";
 import EmptyState from "../global/EmptyState";
 import { BarChart2 } from "lucide-react";
 
-import { useStats } from "@/hooks/useStats";
-
-
+import { useDashboardOverview } from "@/hooks/dashboard/useDashboardOverview";
 
 const ChartSection = () => {
-    const { data: statsData, loading: statsLoading } = useStats();
+  const {
+    data: chartData,
+    isPending: chartLoading,
+    isError: chartError,
+  } = useDashboardOverview();
 
+  const cashflowGraph = chartData?.data?.cashflowGraph || [];
+
+  console.log("dashboard chart data:", cashflowGraph);
 
   return (
     <div
@@ -20,11 +25,17 @@ const ChartSection = () => {
         boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
       }}>
       <SectionHeader title="Inflow vs Outflow" subtitle="Last 6 months" />
-      {statsLoading ? (
+
+      {chartLoading ? (
         <div className="skeleton h-52 w-full rounded-xl" />
-      ) : statsData ? (
+      ) : chartError ? (
+        <EmptyState
+          title="Unable to load chart data"
+          icon={<BarChart2 size={22} style={{ color: "var(--text-muted)" }} />}
+        />
+      ) : cashflowGraph.length ? (
         <InflowOutflowChart
-          data={statsData.chartData}
+          data={cashflowGraph}
           summary="Outflow spiked in March due to the ₦450,000 salary batch and ₦320,000 supplier payment. Inflow remains stable — keep monitoring for further divergence."
         />
       ) : (
@@ -35,6 +46,6 @@ const ChartSection = () => {
       )}
     </div>
   );
-}
+};
 
-export default ChartSection
+export default ChartSection;

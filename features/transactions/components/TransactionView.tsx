@@ -102,6 +102,7 @@ export function TransactionsView() {
             <option value="">All Type</option>
             <option value="credit">Credit</option>
             <option value="debit">Debit</option>
+            <option value="pending">Pending</option>
           </select>
 
           {/* Clear */}
